@@ -9,8 +9,8 @@ interface IFeaturedProps {
 
 export const Featured: FC<IFeaturedProps> = ({ artists }) => {
   return (
-    <div className="grid grid-cols-5 gap-4">
-      {artists.slice(0, 5).map((artistDetails) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+      {artists.slice(0, 4).map((artistDetails) => (
         <ArtistCard key={artistDetails.id} artistDetails={artistDetails} />
       ))}
     </div>

@@ -35,7 +35,6 @@ export default function Home() {
 
   return (
     <main className="bg-gray-50 dark:bg-gray-700 min-h-screen p-4">
-      test
       <Featured artists={artists} />
     </main>
   )

@@ -14,7 +14,7 @@ export const Nav: FC<INavProps> = (props) => {
       <div className="flex flex-wrap items-center justify-between">
         <a href="/" className="flex items-center">
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-            OpenBlog
+            Wzrd's Spell Book De' Artists
           </span>
         </a>
 
