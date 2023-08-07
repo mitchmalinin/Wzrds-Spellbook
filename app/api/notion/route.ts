@@ -14,9 +14,10 @@ export async function GET() {
     database_id: notionDBId,
   })
 
-  //@ts-ignore
-  const artistInfo = query.results.map((res) => res.properties) as Artist[]
-  console.log("artistIdno", artistInfo)
+  const artistInfo = query.results.map((res) => {
+    //@ts-ignore
+    return { ...res.properties, id: res.id }
+  }) as Artist[]
 
-  return NextResponse.json({ data: artistInfo })
+  return NextResponse.json(artistInfo)
 }
