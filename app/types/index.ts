@@ -1,18 +1,87 @@
-export type Artist = {
+type MultiSelectOption = {
   id: string
-  art_style: object
-  special_tags: object
-  username: {
-    id: string
-    formula: {
-      string: string
-    }
+  name: string
+  color: string
+}
+
+type MultiSelect = {
+  id: string
+  type: "multi_select"
+  multi_select: MultiSelectOption[]
+}
+
+type Formula = {
+  id: string
+  type: "formula"
+  formula: {
+    type: string
+    string: string
   }
-  followers_rounded: object
-  twitter_profile: object
-  artist_level: object
-  notes: object
-  time_added: {
-    created_time: string
-  }
+}
+
+type NumberType = {
+  id: string
+  type: "number"
+  number: number
+}
+
+type UrlType = {
+  id: string
+  type: "url"
+  url: string
+}
+
+type SelectOption = {
+  id: string
+  name: string
+  color: string
+}
+
+type SelectType = {
+  id: string
+  type: "select"
+  select: SelectOption
+}
+
+type TextContent = {
+  content: string
+  link: null | string
+}
+
+type Annotations = {
+  bold: boolean
+  italic: boolean
+  strikethrough: boolean
+  underline: boolean
+  code: boolean
+  color: string
+}
+
+type TitleType = {
+  id: string
+  type: "title"
+  title: {
+    type: string
+    text: TextContent
+    annotations: Annotations
+    plain_text: string
+    href: null | string
+  }[]
+}
+
+type CreatedTimeType = {
+  id: string
+  type: "created_time"
+  created_time: string
+}
+
+export type Artist = {
+  username: Formula
+  art_style: MultiSelect
+  special_tags: MultiSelect
+  followers_rounded: NumberType
+  twitter_profile: UrlType
+  artist_level: SelectType
+  notes: TitleType
+  time_added: CreatedTimeType
 }

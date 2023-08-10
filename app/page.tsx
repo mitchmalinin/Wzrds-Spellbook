@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Featured } from "./components/sections/featured"
+import { Featured } from "./components/sections/Featured"
 import { Artist } from "./types"
 
 export default function Home() {
