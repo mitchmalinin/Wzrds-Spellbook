@@ -1,4 +1,4 @@
-type MultiSelectOption = {
+export type MultiSelectOption = {
   id: string
   name: string
   color: string
@@ -84,4 +84,10 @@ export type Artist = {
   artist_level: SelectType
   notes: TitleType
   time_added: CreatedTimeType
+  publish: { checkbox: boolean }
+  id: string
+}
+
+export type ArtistStyles = {
+  multi_select: { options: MultiSelectOption[] }
 }

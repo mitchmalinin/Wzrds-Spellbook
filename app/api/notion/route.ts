@@ -1,4 +1,5 @@
-import { Artist } from "@/app/types"
+import { Artist, ArtistStyles } from "@/app/types"
+import { ARTIST_STYLES_ID } from "@/contants"
 import { Client } from "@notionhq/client"
 import { NextResponse } from "next/server"
 
@@ -10,14 +11,24 @@ export async function GET() {
     throw new Error("Notion connection not working")
 
   const notion = new Client({ auth: notionSecret })
+
   const query = await notion.databases.query({
     database_id: notionDBId,
   })
 
-  const artistInfo = query.results.map((res) => {
-    //@ts-ignore
-    return { ...res.properties, id: res.id }
-  }) as Artist[]
+  const dataBaseOptions = await notion.databases.retrieve({
+    database_id: notionDBId,
+  })
 
-  return NextResponse.json(artistInfo)
+  const artistStyles = (dataBaseOptions.properties["art_style"] as ArtistStyles)
+    .multi_select.options
+
+  const artistInfo = query.results
+    .map((res) => {
+      //@ts-ignore
+      return { ...res.properties, id: res.id }
+    })
+    .filter((artist: Artist) => artist.publish.checkbox) as Artist[]
+
+  return NextResponse.json({ artistInfo, artistStyles })
 }

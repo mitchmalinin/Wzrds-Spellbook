@@ -13,7 +13,7 @@ export const Nav: FC<INavProps> = (props) => {
     <header className="bg-gray-50 px-2 sm:px-4 py-2.5 dark:bg-gray-700 w-full">
       <div className="flex flex-wrap items-center justify-between">
         <a href="/" className="flex items-center">
-          <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+          <span className="self-center text-xl whitespace-nowrap dark:text-white">
             Wzrd's Spell Book De' Artists
           </span>
         </a>

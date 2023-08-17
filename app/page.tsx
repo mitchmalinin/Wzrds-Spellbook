@@ -1,31 +1,25 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Featured } from "./components/sections/Featured"
-import { Artist } from "./types"
+import { Filter } from "./components/filter"
+import { Featured } from "./components/sections/featured"
+import { Artist, MultiSelectOption } from "./types"
 
 export default function Home() {
   const [artists, setArtists] = useState<Artist[]>([])
+  const [artistsStyles, setArtistsStyles] = useState<MultiSelectOption[]>([])
 
   useEffect(() => {
-    //TODO: make the sort by created time work
     try {
       const fetchArtistsFromNotion = async () => {
-        const returnedArtists = await (
-          await fetch("http://localhost:3000/api/notion", {
-            next: { revalidate: 3600 },
-          })
+        const {
+          artistInfo,
+          artistStyles,
+        }: { artistInfo: Artist[]; artistStyles: MultiSelectOption[] } = await (
+          await fetch("http://localhost:3000/api/notion", { cache: "no-store" })
         ).json()
-        setArtists(
-          returnedArtists.sort((artist1: Artist, artist2: Artist) =>
-            artist1.time_added.created_time > artist2.time_added.created_time
-              ? 1
-              : artist1.time_added.created_time <
-                artist2.time_added.created_time
-              ? -1
-              : 0
-          )
-        )
+        setArtists(artistInfo)
+        setArtistsStyles(artistStyles)
       }
       fetchArtistsFromNotion()
     } catch (err) {
@@ -36,6 +30,7 @@ export default function Home() {
   return (
     <main className="bg-gray-50 dark:bg-gray-700 min-h-screen p-4">
       <Featured artists={artists} />
+      <Filter artistStyles={artistsStyles} />
     </main>
   )
 }
