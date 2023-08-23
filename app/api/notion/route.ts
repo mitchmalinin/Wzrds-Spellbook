@@ -1,5 +1,5 @@
-import { Artist, ArtistStyles } from "@/app/types"
 import { ARTIST_STYLES_ID } from "@/contants"
+import { Artist, ArtistStyles } from "@/types"
 import { Client } from "@notionhq/client"
 import { NextResponse } from "next/server"
 
@@ -23,12 +23,12 @@ export async function GET() {
   const artistStyles = (dataBaseOptions.properties["art_style"] as ArtistStyles)
     .multi_select.options
 
-  const artistInfo = query.results
+  const artists = query.results
     .map((res) => {
       //@ts-ignore
       return { ...res.properties, id: res.id }
     })
     .filter((artist: Artist) => artist.publish.checkbox) as Artist[]
 
-  return NextResponse.json({ artistInfo, artistStyles })
+  return NextResponse.json({ artists, artistStyles })
 }

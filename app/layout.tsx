@@ -3,8 +3,8 @@ import "@fortawesome/fontawesome-svg-core/styles.css" // Import the CSS
 import type { Metadata } from "next"
 
 import { Inter } from "next/font/google"
-import { Nav } from "./components/nav"
-import { ThemeWrapper } from "./context/themeWrapper"
+import { Nav } from "../components/nav"
+import { ThemeWrapper } from "../context/themeWrapper"
 import "./globals.css"
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 

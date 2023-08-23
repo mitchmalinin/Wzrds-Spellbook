@@ -1,5 +1,4 @@
-"use client"
-import { Artist } from "@/app/types"
+import { Artist } from "@/types"
 import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { FC, useEffect, useState } from "react"
