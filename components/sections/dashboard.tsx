@@ -29,7 +29,11 @@ export const Dashboard: FC<IDashboardProps> = ({ artists, artistsStyles }) => {
   return (
     <main className="bg-gray-50 dark:bg-gray-700 min-h-screen p-4">
       <Featured artists={artists} />
-      <Filter artistStyles={artistsStyles} setFilter={setFilter} />
+      <Filter
+        artistStyles={artistsStyles}
+        setFilter={setFilter}
+        filter={filter}
+      />
       <Artists artists={filteredArtists} />
     </main>
   )

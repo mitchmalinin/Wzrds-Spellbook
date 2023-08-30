@@ -12,7 +12,7 @@ export default function Loading() {
           .map((_, index) => (
             <div
               key={index}
-              className={`bg-cyan-400 rounded-lg p-2 hover:bg-cyan-200 transition-all cursor-pointer w-24 h-10`}
+              className={`bg-cyan-600 rounded-lg p-2 hover:bg-cyan-200 transition-all cursor-pointer w-24 h-10`}
             ></div>
           ))}
       </div>

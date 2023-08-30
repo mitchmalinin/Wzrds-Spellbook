@@ -11,11 +11,11 @@ export const Nav: FC<INavProps> = (props) => {
   const { theme, setTheme } = useTheme()
 
   return (
-    <header className="bg-gray-50 px-2 sm:px-4 py-2.5 dark:bg-gray-700 w-full">
+    <header className="bg-gray-50  py-2.5 dark:bg-gray-700 w-full">
       <div className="flex flex-wrap items-center justify-between">
         <a href="/" className="flex items-center">
           <span className="self-center text-xl whitespace-nowrap dark:text-white">
-            Wzrd's Spell Book De' Artists
+            Wzrd&apos;s Spell Book De&apos; Artists
           </span>
         </a>
 

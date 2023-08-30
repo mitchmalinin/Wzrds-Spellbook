@@ -1,6 +1,10 @@
+"use client"
+
 import { Artist } from "@/types"
 import { faTwitter } from "@fortawesome/free-brands-svg-icons"
+import { faLink } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Link from "next/link"
 import { FC, useEffect, useState } from "react"
 
 interface IArtistCardProps {
@@ -11,10 +15,15 @@ interface IArtistCardProps {
 
 export const ArtistCard: FC<IArtistCardProps> = ({ artistDetails }) => {
   return (
-    <div className="flex flex-col p-4 rounded-md bg-gray-500 text-black dark:text-white min-h-[200px] items-left justify-center gap-1">
-      <h2 className="text-xl mb-2">
-        {artistDetails?.username?.formula?.string?.split("?")[0] || ""}
-      </h2>
+    <div className="flex flex-col p-4 rounded-md bg-gray-300 dark:bg-gray-500 text-black dark:text-white items-left justify-center gap-1 transition-all h-[250px]">
+      <Link
+        href={`/${artistDetails?.username?.formula?.string?.split("?")[0]}`}
+      >
+        <h2 className="text-xl mb-2 flex gap-2 items-center">
+          <FontAwesomeIcon icon={faLink} className="text-blue-300 text-sm " />
+          {artistDetails?.username?.formula?.string?.split("?")[0] || ""}
+        </h2>
+      </Link>
       <p className="">
         <span className="text-gray-900 dark:text-gray-400">Art Style:</span>{" "}
         {(artistDetails?.art_style?.multi_select || [])

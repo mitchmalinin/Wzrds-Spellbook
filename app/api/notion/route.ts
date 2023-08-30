@@ -20,8 +20,9 @@ export async function GET() {
     database_id: notionDBId,
   })
 
-  const artistStyles = (dataBaseOptions.properties["art_style"] as ArtistStyles)
-    .multi_select.options
+  const artistStyles = (
+    dataBaseOptions.properties["art_style"] as ArtistStyles
+  ).multi_select.options.map((option) => ({ ...option, color: "bg-green-300" }))
 
   const artists = query.results
     .map((res) => {
