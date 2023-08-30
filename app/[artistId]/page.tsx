@@ -1,3 +1,4 @@
+import { FetchedArtist } from "@/types"
 import { FC } from "react"
 import { fetchArtist } from "../api/fetchArtist"
 interface IArtistPageProps {
@@ -7,11 +8,14 @@ interface IArtistPageProps {
 }
 
 const ArtistPage: FC<IArtistPageProps> = async ({ params }) => {
-  const scrapedArtistProfile = await fetchArtist("uczine")
+  const scrapedArtistProfile: FetchedArtist = await fetchArtist(params.artistId)
 
-  console.log("scraped artist profile", scrapedArtistProfile)
-
-  return <div className="">{params.artistId}</div>
+  return (
+    <div>
+      <div className="">{params.artistId}</div>
+      <div>Followers: {scrapedArtistProfile?.followers}</div>
+    </div>
+  )
 }
 
 export default ArtistPage

@@ -91,3 +91,8 @@ export type Artist = {
 export type ArtistStyles = {
   multi_select: { options: MultiSelectOption[] }
 }
+
+export type FetchedArtist = {
+  username: string | undefined
+  followers: string | undefined
+}

@@ -1,7 +1,11 @@
-import { Artist, MultiSelectOption } from "@/types"
+import { FetchedArtist } from "@/types"
 import puppeteer from "puppeteer"
 
-export const fetchArtist = async (username: string): Promise<any> => {
+export const fetchArtist = async (username: string): Promise<FetchedArtist> => {
+  if (!username) {
+    throw new Error("Invalid username")
+  }
+
   const URL = `https://twitter.com/${username}`
 
   const browser = await puppeteer.launch({
@@ -16,21 +20,25 @@ export const fetchArtist = async (username: string): Promise<any> => {
   const page = await browser.newPage()
   await page.goto(URL, { waitUntil: "networkidle0" })
 
-  const userData = await page.evaluate(() => {
-    const username = document
-      .querySelector('[data-testid="UserName"]')
-      ?.textContent?.split("@")[0]
+  try {
+    const userData = await page.evaluate(() => {
+      const username = document
+        .querySelector('[data-testid="UserName"]')
+        ?.textContent?.split("@")[0]
 
-    const followers = document
-      .querySelector(`a[href="/${username}/followers"]`)
-      ?.textContent?.split("Followers")[0]
-      .trim()
+      const followers = document
+        .querySelector(`a[href*="/followers"]`)
+        ?.textContent?.split("Followers")[0]
+        .trim()
 
-    return {
-      username,
-      followers,
-    }
-  })
+      return {
+        username,
+        followers,
+      }
+    })
 
-  return { userData }
+    return userData
+  } catch (error) {
+    throw new Error("Failed to fetch artist data")
+  }
 }
