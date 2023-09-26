@@ -25,12 +25,12 @@ export const fetchArtist = async (username: string): Promise<FetchedArtist> => {
       const username = document
         .querySelector('[data-testid="UserName"]')
         ?.textContent?.split("@")[0]
-
       const followers = document
-        .querySelector(`a[href*="/followers"]`)
+        .querySelector(`a[href*="/verified_followers"]`)
         ?.textContent?.split("Followers")[0]
         .trim()
 
+      console.log("this is working", followers)
       return {
         username,
         followers,

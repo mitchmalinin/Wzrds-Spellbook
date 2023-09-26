@@ -12,7 +12,12 @@ interface IDashboardProps {
 }
 
 export const Dashboard: FC<IDashboardProps> = ({ artists, artistsStyles }) => {
-  const [filter, setFilter] = useState("all")
+  const [filter, setFilter] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("filter") || "all"
+    }
+    return "all"
+  })
   const [filteredArtists, setFilteredArtists] = useState<Artist[]>([])
 
   useEffect(() => {
@@ -25,6 +30,12 @@ export const Dashboard: FC<IDashboardProps> = ({ artists, artistsStyles }) => {
     )
     setFilteredArtists(foundFilteredArtists)
   }, [filter, artists])
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("filter", filter)
+    }
+  }, [filter])
 
   return (
     <main className="bg-gray-50 dark:bg-gray-700 min-h-screen p-4">

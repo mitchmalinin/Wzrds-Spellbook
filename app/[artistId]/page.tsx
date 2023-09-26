@@ -10,6 +10,8 @@ interface IArtistPageProps {
 const ArtistPage: FC<IArtistPageProps> = async ({ params }) => {
   const scrapedArtistProfile: FetchedArtist = await fetchArtist(params.artistId)
 
+  console.log("test", scrapedArtistProfile)
+
   return (
     <div>
       <div className="">{params.artistId}</div>
